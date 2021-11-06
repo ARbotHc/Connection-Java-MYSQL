@@ -1,0 +1,26 @@
+public class Connection {
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String[] args) {
+        // TODO code application logic here
+    }
+    
+}
+Class.forName("com.mysql.jdbc.Driver").newInstance();
+jdbc:mysql://[host1]:[port1],[host2]:[port2]/[databaseName]?[property1=value1]&[property2=value2]
+jdbc:mysql://localhost:3306/lineadecodigo
+Connection con = null;
+String sURL = "jdbc:mysql://localhost:3306/lineadecodigo";
+con = DriverManager.getConnection(sURL,"usuario","password");
+try (PreparedStatement stmt = con.prepareStatement("SELECT country FROM country")) {
+  ResultSet rs = stmt.executeQuery();
+
+  while (rs.next())
+    System.out.println (rs.getString("country"));
+
+} catch (SQLException sqle) { 
+  System.out.println("Error en la ejecución:" 
+    + sqle.getErrorCode() + " " + sqle.getMessage());    
+}
